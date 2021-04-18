@@ -1,0 +1,37 @@
+lbs
+lb
+pound
+tablespoons
+tablespoon
+teaspoon
+teaspoons
+tbs
+tbsp
+tbsps
+tbsp.
+tsp.
+tsp
+cup
+ounces
+ounce
+cups
+pounds
+tsps
+pints
+pint
+oz
+oz.
+gallon
+gallons
+pinch
+dash
+a dash
+to taste
+fl oz
+fl. oz.
+fluid ounces
+fluid ounce
+quart
+quarts
+qt
+qts
