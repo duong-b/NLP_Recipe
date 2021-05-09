@@ -4,13 +4,14 @@ from bs4 import BeautifulSoup
 import pickle
 import pandas as pd
 import numpy as np
+from fractions import Fraction
 import re
 import lxml
 
 
 # Scraping recipes from Food.com
 def url_to_text_food_dot_com(url):
-    page = requests.get(url)# convert webpage into text
+    page = requests.get(url) # convert webpage into text
     page.encoding = "utf-8"
     page = page.text
     soup = BeautifulSoup(page, "lxml")  # create the soup
@@ -23,13 +24,19 @@ def url_to_text_food_dot_com(url):
     for item in ingredients_unparsed:
         #       print(item)
         try:
-            #         item_full = item.get_text()
             quantity.append(float(item.find(class_='recipe-ingredients__ingredient-quantity').text))
+        except ValueError:
+            temp = item.find(class_='recipe-ingredients__ingredient-quantity').text.split()
+            frac_text = temp[0]
+            num = float(frac_text[0])
+            denom = float(frac_text[2])
+            quantity.append(num/denom)
+        try:
+            #         item_full = item.get_text()
             unit.append(item.find(class_='recipe-ingredients__ingredient-part').text.strip())
             ingredients.append(item.find('a').text)
         except AttributeError:
             ingredients.append('NA')
-
     # Fix the item that does not follow the pattern
     #     x = unit[2].split('    ')
     #     unit[2] = x[0]
